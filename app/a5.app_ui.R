@@ -4,53 +4,45 @@ library(shiny)
 library(plotly)
 library(ggplot2)
 source('./a5.app_server.R')
-inputs <- sidebarPanel(
-  sliderInput(
-    inputId = "year_range",
-    label = "Choose date range",
-    min = 1750,
-    max = 2021,
-    value = range(1750,2020),
-    timeFormat = "%Y"
-  ),
-  selectInput(
-    inputId = "country_one",
-    label = "Choose 1st Country",
-    choices = unique(df1$df.country),
-    selected = "World"
-  ),
-  selectInput(
-    inputId = "country_two",
-    label = "Choose 2nd Country",
-    choices = unique(df1$df.country),
-    selected = "Spain"
-  ),
-  checkboxInput(
-    inputId = "smooth_line",
-    label = "Show smooth line?",
-    value = T
-  )
-)
+
+
+
 chart_page <- tabPanel(
-  "Country Comparison of CO2 Emissions Per Capita",
+  "CO2 Emissions Per Capita By Country",
   titlePanel("Comparing Countries CO2 Emissions Per Capita"),
-  sidebarLayout(inputs,
-                mainPanel(plotOutput("comparison_plot")
-                          )
+  sidebarLayout(
+    sidebarPanel(sliderInput(
+      inputId = 'year',
+      label = 'Year',
+      min = 1750,
+      max = 2020,
+      value = range(1850,1950),
+      step = 10,
+      timeFormat = "%Y"
+    ),
+    selectInput(
+      inputId = "country",
+      label = "Choose Country",
+      choices = unique(df1$df.country),
+      selected = "World")
+    ),
+    
+        mainPanel(plotOutput("line")
+               )
                 ),
   p(
-    'This interactive visualization compares the co2 emmision per capita
-    of two self-selected countries. The countries are compared using the continuous variable of time
-    which is can be selected by the user. This visaulization reveals the amount of emissions each country is
-    emitting based on its population. '
+    'This interactive visualization depicts the co2 emmision per capita
+    of a self-selected country. This visaulization reveals the amount of emissions each country is
+    emitting based on its population. This information is important in assessing which nations are 
+    the largest contributers to the increase of CO2 in our atmosphere. By studying CO2 trends over time
+    we can analyze peak CO2 emssions and estimate that countries CO2 productions in the future. '
   )
 )
 
 introduction <- tabPanel(
   "Introduction",
   titlePanel('Introduction'),
-  p(
-    'In my report, I will be focusing on the CO2 emmisions per capita in countries
+  p('In my report, I will be focusing on the CO2 emmisions per capita in countries
     overtime. In the large data set provided by Our World in Data, I focused on the country, year, and
     co2_per_capita variables. By analyzing the patterns in co2 emmisions, we can make conclusions about which
     countries have had the most significant contributions to increasing CO2 emmisions, and thus global warming.

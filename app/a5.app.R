@@ -6,8 +6,11 @@
 #
 #    http://shiny.rstudio.com/
 #
-
+library(dplyr)
+library(tidyverse)
 library(shiny)
+library(plotly)
+library(ggplot2)
 
 source("./a5.app_ui.R", local = knitr::knit_global())
 source("./a5.app_server.R", local = knitr::knit_global())

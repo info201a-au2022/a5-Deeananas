@@ -1,0 +1,13 @@
+name: A5_app
+title: A5_app
+username:
+account: info201-deeananas
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7812464
+bundleId: 6596867
+url: https://info201-deeananas.shinyapps.io/A5_app/
+when: 1670292913.22197
+lastSyncTime: 1670292913.22199
+asMultiple: FALSE
+asStatic: FALSE
